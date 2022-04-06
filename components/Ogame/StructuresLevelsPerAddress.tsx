@@ -32,7 +32,7 @@ export function StructuresLevelsPerAddress() {
             {console.log(data)}
             {
                 data && data.map((structure, index) =>
-                    <div>{structuresLabel[index]}{' level '}{toBN(structure).toString(10)}</div>
+                    <div key={index}>{structuresLabel[index]}{' level '}{toBN(structure).toString(10)}</div>
                 )
             }
         </div>
