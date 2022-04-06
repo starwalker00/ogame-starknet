@@ -11,8 +11,13 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
+import { useStarknet } from '@starknet-react/core'
+import { ConnectWallet } from '@components/Layout/ConnectWallet';
+
 export default function Navbar() {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { account } = useStarknet();
+
     return (
         <>
             <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -38,6 +43,7 @@ export default function Navbar() {
                             </NextLink>
                         </HStack>
                     </HStack>
+                    <ConnectWallet />
                 </Flex>
 
                 {isOpen ? (

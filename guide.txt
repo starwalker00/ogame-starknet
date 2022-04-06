@@ -1,0 +1,24 @@
+The guide: How to play: 
+1 - On write contract call generate_planet. This will transfer the game NFT to you (nft images and metadata are still not working correctly (free tier Pinata IPFS node is super slow) but they can be accessed at the NFT URI)
+
+2 - On Argent-X add the following tokens: 
+    0x005bf547b2f661336e9f8922ec2a70d7d54654796f3c15bac1c1b0b7741c6e29
+    0x000dd0a85312bf09bc30f1328b1f3264f3757a1d539fb337aff6bffa0eb474d1
+    0x008f5fb6ccc1be7385651fdf63aacb24858350b477212a9b1f056225ff9473a6
+you'll notice that you've been transferred 500 metal, 300 crystal, 100 deuterium.
+
+3 - Every time you call a view function you'll have to use your account contract address as parameter. 
+
+4 - To see the levels of your structures in read contract call get_structures_levels. You start with metal, crystal, deuterium and solar plant at 1, robot factory at 0.
+
+5 - resources_available will return the amount of resources available to you at this moment. THIS WILL NOT give you any usable resources. To receive  resources you have to call collect_resources in write contract tab. Now check your argent wallet and you'll notice that the tokens has been sent to you. 
+
+6 - When you call resources_available if your energy is at 0 it means that you have to up your solar plant otherwise the mines production will be limeted and eventually will stop. Energy should always be more than 0.
+
+7 - To improve a structure you'll have to _upgrade_start of the structure you want to update first, this will trigger a timelock, the end of witch can be known with build_time_completion (7) in call contract tab, this will return a time stamp that can be plugged here: https://timestampconvert.net to have the time the building will finish its upgrade. When the time lock will be expired call the _upgrade_complete on the same structure to complete the upgrade. You will now be able the upgrade with get_structures_levels (4). 
+
+8 - To know the costs of the next upgrades call get_structurs_upgrade_cost (6)
+
+9 - The robot factory is the only bulding requiring deuterim (for now) and it will speed up the upgrade time required for all the buildings.
+
+10 - To see how many points you have so far call player_points (8). You'll gain 1 point every 1k resources spent for upgrades.
