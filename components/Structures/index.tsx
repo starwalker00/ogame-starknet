@@ -2,23 +2,36 @@ import type { NextPageWithLayout } from '@custom-types/page'
 import type { ReactElement } from 'react'
 import { Layout, Navbar } from '@components/Layout'
 import { ResourceBar } from '@components/Layout'
-import { Center, Heading } from '@chakra-ui/react'
+import { Center, Container, Heading, Stack } from '@chakra-ui/react'
 import { VStack, Flex, Text } from '@chakra-ui/react'
-
-import React from 'react'
-import { PlanetTotalAmount } from '@components/Ogame/PlanetTotalAmount'
-import { PlanetIDOwnedPerAddress } from '@components/Ogame/PlanetIDOwnedPerAddress'
-import { RessourcesAvailablePerAddress } from '@components/Ogame/RessourcesAvailablePerAddress'
-import { StructuresLevelsPerAddress } from '@components/Ogame/StructuresLevelsPerAddress'
-import { StructuresUpgradeCostPerAddress } from '@components/Ogame/StructuresUpgradeCostPerAddress'
-import { GeneratePlanet } from '@components/Ogame/GeneratePlanet'
-import { BuildTimeCompletionPerAddress } from '@components/Ogame/BuildTimeCompletionPerAddress'
+import { useStructures } from '../../hooks/structures'
+import StructureItem from '@components/Structures/StructureItem'
+import { useStarknet } from '@starknet-react/core'
+import { Structure } from '@custom-types/ogame'
 
 const Structures: NextPageWithLayout = () => {
+    const { account } = useStarknet();
+    const hasAccount = Boolean(account);
+    const [dataStructures] = useStructures();
+    // const hasDataStructures = dataStructures.length > 0;
     return (
-        <>
+        <Container maxW={'7xl'} p="12" border='2px solid teal'>
+            <Heading>Structures</Heading>
 
-        </>
+            {
+                !hasAccount
+                    ?
+                    <h1>no acc</h1>
+                    :
+                    <Stack direction='column' spacing={8}>
+                        {
+                            dataStructures.map((structure: Structure) =>
+                                <StructureItem key={structure.name} structure={structure} />
+                            )
+                        }
+                    </Stack>
+            }
+        </Container>
     )
 }
 
