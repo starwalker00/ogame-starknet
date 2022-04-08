@@ -6,6 +6,7 @@ import {
     Heading,
     Skeleton,
     Divider,
+    Spacer,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react/core'
@@ -67,46 +68,51 @@ export default function ResourceBar() {
                 rounded={'xl'}
                 boxShadow={'sm'}
             >
-                <Flex height={16} margin='auto' alignItems={'center'} justifyContent={'center'}>
-                    <HStack alignItems={'center'}
-                        spacing={{ base: 2, md: 8 }} >
-                        <ResourceItem
-                            type={Resource.Metal}
-                            erc20Balance={metalBalance}
-                            loadingErc20={loadingMetal}
-                            availableBalance={data?.[0]}
-                            loadingAvailable={loading}
-                        ></ResourceItem>
-                        <ResourceItem
-                            type={Resource.Crystal}
-                            erc20Balance={crystalBalance}
-                            loadingErc20={loadingCrystal}
-                            availableBalance={data?.[1]}
-                            loadingAvailable={loading}
-                        ></ResourceItem>
-                        <ResourceItem
-                            type={Resource.Deuterium}
-                            erc20Balance={deuteriumBalance}
-                            loadingErc20={loadingDeuterium}
-                            availableBalance={data?.[2]}
-                            loadingAvailable={loading}
-                        ></ResourceItem>
-                        {/* custom component needed because no erc20 for energy */}
-                        <Box>
-                            <Stack direction='column' spacing={0} alignItems={'center'}>
-                                <Heading size='xs'>{Resource.Energy}</Heading>
-                                {
-                                    loading || !data?.[3]
-                                        ?
-                                        <Skeleton>placeholder</Skeleton>
-                                        :
-                                        <Box>{toBN(data?.[3])?.toString(10)}</Box>
-                                }
-                            </Stack>
-                        </Box>
+                <HStack
+                    height={16}
+                    width={'full'}
+                    margin='auto'
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    spacing={{ base: 2, md: 8 }}>
+                    <ResourceItem
+                        type={Resource.Metal}
+                        erc20Balance={metalBalance}
+                        loadingErc20={loadingMetal}
+                        availableBalance={data?.[0]}
+                        loadingAvailable={loading}
+                    ></ResourceItem>
+                    <ResourceItem
+                        type={Resource.Crystal}
+                        erc20Balance={crystalBalance}
+                        loadingErc20={loadingCrystal}
+                        availableBalance={data?.[1]}
+                        loadingAvailable={loading}
+                    ></ResourceItem>
+                    <ResourceItem
+                        type={Resource.Deuterium}
+                        erc20Balance={deuteriumBalance}
+                        loadingErc20={loadingDeuterium}
+                        availableBalance={data?.[2]}
+                        loadingAvailable={loading}
+                    ></ResourceItem>
+                    {/* custom component needed because no erc20 for energy */}
+                    <Box>
+                        <Stack direction='column' spacing={0} alignItems={'center'}>
+                            <Heading size='xs'>{Resource.Energy}</Heading>
+                            {
+                                loading || !data?.[3]
+                                    ?
+                                    <Skeleton>placeholder</Skeleton>
+                                    :
+                                    <Box>{toBN(data?.[3])?.toString(10)}</Box>
+                            }
+                        </Stack>
+                    </Box>
+                    <Box>
                         <CollectResourcesButton />
-                    </HStack>
-                </Flex>
+                    </Box>
+                </HStack>
             </Box>
         </>
     );
