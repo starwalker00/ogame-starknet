@@ -13,9 +13,14 @@ export interface Structure {
     name: string;
     level: BigNumberish;
     upgrade_costs: UpgradeCosts;
+    upgrade_methods: UpgradeMethods;
 }
 export interface UpgradeCosts {
     metal: BigNumberish;
     crystal: BigNumberish;
     deuterium: BigNumberish;
+}
+export interface UpgradeMethods {
+    start: string;
+    complete: string;
 }
