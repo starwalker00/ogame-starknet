@@ -44,6 +44,8 @@ export default function ResourceBar() {
         method: 'balanceOf',
         args: account ? [account] : undefined,
     })
+
+    const coloModeValue = useColorModeValue('gray.300', 'gray.600');
     if (!hasAccount) {
         return (null)
         // return (
@@ -61,7 +63,7 @@ export default function ResourceBar() {
     return (
         <>
             <Box
-                bg={useColorModeValue('gray.300', 'gray.600')}
+                bg={coloModeValue}
                 width={{ base: '90%', md: '70%' }}
                 mx='auto' my='20px'
                 px='auto' py='12px'
