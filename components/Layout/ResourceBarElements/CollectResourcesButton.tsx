@@ -1,22 +1,6 @@
-import NextLink from 'next/link'
-import {
-    Box,
-    Flex,
-    Stack,
-    HStack,
-    Heading,
-    Link,
-    Button,
-    useColorModeValue,
-    Skeleton
-} from '@chakra-ui/react';
-
-import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react/core'
+import { Button } from '@chakra-ui/react';
 import { useOgameContract } from '../../../hooks/ogame'
-import { useMetalContract, useCrystalContract, useDeuteriumContract } from '../../../hooks/erc20-resources'
-import { toBN } from 'starknet/dist/utils/number';
-import { uint256ToBN } from 'starknet/dist/utils/uint256'
-import { Resource } from '@custom-types/ogame'
+import { useStarknetInvoke } from '@starknet-react/core';
 
 export default function CollectResourcesButton() {
     const { contract: ogame } = useOgameContract()
