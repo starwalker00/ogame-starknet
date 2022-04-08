@@ -2,11 +2,10 @@ import {
     Box,
     Flex,
     HStack,
-    Link,
-    Button,
     Stack,
     Heading,
     Skeleton,
+    Divider,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react/core'
@@ -19,6 +18,7 @@ import CollectResourcesButton from './ResourceBarElements/CollectResourcesButton
 
 export default function ResourceBar() {
     const { account } = useStarknet();
+    const hasAccount = Boolean(account);
     const { contract: ogame } = useOgameContract()
     const { data, loading, error } = useStarknetCall({
         contract: ogame,
@@ -43,13 +43,33 @@ export default function ResourceBar() {
         method: 'balanceOf',
         args: account ? [account] : undefined,
     })
-
+    if (!hasAccount) {
+        return (null)
+        // return (
+        //     <Box
+        //         bg={useColorModeValue('gray.400', 'gray.500')}
+        //         width='80%'
+        //         mx='auto' my='20px'
+        //         px='auto' py='12px'
+        //     >
+        //         <Flex height={16} margin='auto' alignItems={'center'} justifyContent={'center'}>
+        //         </Flex>
+        //     </Box>
+        // )
+    }
     return (
         <>
-            <Box bg={useColorModeValue('gray.400', 'gray.500')} px={4}>
-                <Flex h={16} alignItems={'center'} justifyContent={'center'}>
-                    <HStack spacing={8} alignItems={'center'}>
-                        {console.log(metalBalance)}
+            <Box
+                bg={useColorModeValue('gray.300', 'gray.600')}
+                width={{ base: '90%', md: '70%' }}
+                mx='auto' my='20px'
+                px='auto' py='12px'
+                rounded={'xl'}
+                boxShadow={'sm'}
+            >
+                <Flex height={16} margin='auto' alignItems={'center'} justifyContent={'center'}>
+                    <HStack alignItems={'center'}
+                        spacing={{ base: 2, md: 8 }} >
                         <ResourceItem
                             type={Resource.Metal}
                             erc20Balance={metalBalance}
