@@ -27,7 +27,7 @@ export function PlanetIDOwnedPerAddress() {
         <div>
             data:{JSON.stringify(data)}
             <br />
-            {uint256ToBN(data?.[0]).toString(10)}
+            {/* {uint256ToBN(data?.[0]).toString(10)} */}
         </div>
     )
 }
