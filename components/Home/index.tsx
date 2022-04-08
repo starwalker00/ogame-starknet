@@ -12,7 +12,7 @@ const Home: NextPageWithLayout = () => {
                 <Heading>Home</Heading>
                 <Center>
                     <Stack direction="row" spacing={1}>
-                        <Text as="span" fontSize='md'>Nothin here yet, go to </Text>
+                        <Text as="span" fontSize='md'>Nothing here yet, go to </Text>
                         <Text as="span" fontSize='md' color="teal">
                             <NextLink href="/structures" passHref>
                                 <Link>Structures</Link>
