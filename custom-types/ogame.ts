@@ -12,6 +12,7 @@ export const Resource = {
 export interface Structure {
     name: string;
     level: BigNumberish;
+    isUpgrading: boolean;
     upgrade_costs: UpgradeCosts;
     upgrade_methods: UpgradeMethods;
 }

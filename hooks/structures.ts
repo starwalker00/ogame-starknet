@@ -23,6 +23,17 @@ export const useStructures = () => {
             args: account ? [account] : undefined,
         });
 
+    // get upgrade status
+    // const {
+    //     data: dataIsUpgrading,
+    //     loading: loadingIsUpgrading,
+    //     error: errorIsUpgrading } =
+    //     useStarknetCall({
+    //         contract: ogame,
+    //         method: '',
+    //         args: account ? [account] : undefined,
+    //     });
+
     // get_structures_upgrade_cost
     const {
         data: dataStructuresUpgradeCost,
@@ -39,6 +50,7 @@ export const useStructures = () => {
         let struct: Structure = {
             name: structuresLabel[i],
             level: dataStructuresLevels?.[i] ? toBN(dataStructuresLevels?.[i]) : undefined,
+            isUpgrading: false,//TODO: get real value from view function
             upgrade_costs: {
                 metal: dataStructuresUpgradeCost?.[i] ? toBN(dataStructuresUpgradeCost?.[i]?.metal) : undefined,
                 crystal: dataStructuresUpgradeCost?.[i] ? toBN(dataStructuresUpgradeCost?.[i]?.crystal) : undefined,
