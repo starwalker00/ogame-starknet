@@ -9,6 +9,7 @@ import StructureItem from '@components/Structures/StructureItem'
 import BuildStatus from '@components/Structures/BuildStatus'
 import { useStarknet } from '@starknet-react/core'
 import { Structure } from '@custom-types/ogame'
+import { ConnectWalletInPage } from '@components/Layout/ConnectWalletInPage'
 
 const Structures: NextPageWithLayout = () => {
     const { account } = useStarknet();
@@ -18,11 +19,14 @@ const Structures: NextPageWithLayout = () => {
     return (
         <Container maxW={'4xl'} p="12" border='2px solid teal'>
             <Heading>Structures</Heading>
-
             {
                 !hasAccount
                     ?
-                    <h1>no acc</h1>
+                    <>
+                        <Center>
+                            <ConnectWalletInPage />
+                        </Center>
+                    </>
                     :
                     <>
                         <Box margin={10}>

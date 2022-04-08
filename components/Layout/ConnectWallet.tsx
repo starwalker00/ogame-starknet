@@ -12,7 +12,7 @@ import { ChevronDownIcon, SmallCloseIcon } from '@chakra-ui/icons';
 import { truncateEthAddress } from 'lib/helper';
 
 export function ConnectWallet() {
-    const { account, connect, } = useStarknet()
+    const { account, connect } = useStarknet()
 
     if (account) {
         // return <p>Account: {account}</p>
