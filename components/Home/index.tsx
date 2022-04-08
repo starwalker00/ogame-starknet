@@ -1,25 +1,26 @@
 import type { NextPageWithLayout } from '@custom-types/page'
 import type { ReactElement } from 'react'
+import NextLink from "next/link"
 import { Layout, Navbar } from '@components/Layout'
 import { ResourceBar } from '@components/Layout'
-import { Center, Heading } from '@chakra-ui/react'
-import { VStack, Flex, Text } from '@chakra-ui/react'
-
-import React from 'react'
-import { PlanetTotalAmount } from '@components/Ogame/PlanetTotalAmount'
-import { PlanetIDOwnedPerAddress } from '@components/Ogame/PlanetIDOwnedPerAddress'
-import { RessourcesAvailablePerAddress } from '@components/Ogame/RessourcesAvailablePerAddress'
-import { StructuresLevelsPerAddress } from '@components/Ogame/StructuresLevelsPerAddress'
-import { StructuresUpgradeCostPerAddress } from '@components/Ogame/StructuresUpgradeCostPerAddress'
-import { GeneratePlanet } from '@components/Ogame/GeneratePlanet'
-import { BuildTimeCompletionPerAddress } from '@components/Ogame/BuildTimeCompletionPerAddress'
+import { Container, Center, Stack, Heading, Text, Link } from '@chakra-ui/react'
 
 const Home: NextPageWithLayout = () => {
     return (
         <>
-            <Center>
+            <Container maxW={'4xl'} p="12" border='2px solid teal'>
                 <Heading>Home</Heading>
-            </Center>
+                <Center>
+                    <Stack direction="row" spacing={1}>
+                        <Text as="span" fontSize='md'>Nothin here yet, go to </Text>
+                        <Text as="span" fontSize='md' color="teal">
+                            <NextLink href="/structures" passHref>
+                                <Link>Structures</Link>
+                            </NextLink>
+                        </Text>
+                    </Stack>
+                </Center>
+            </Container>
         </>
     )
 }

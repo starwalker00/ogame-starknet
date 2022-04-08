@@ -1,14 +1,26 @@
 import type { NextPageWithLayout } from '@custom-types/page'
 import type { ReactElement } from 'react'
+import NextLink from "next/link"
 import { Layout, Navbar } from '@components/Layout'
-import { Center, Heading } from '@chakra-ui/react'
+import { ResourceBar } from '@components/Layout'
+import { Container, Center, Stack, Heading, Text, Link } from '@chakra-ui/react'
 
 const About: NextPageWithLayout = () => {
     return (
         <>
-            <Center>
+            <Container maxW={'4xl'} p="12" border='2px solid teal'>
                 <Heading>About</Heading>
-            </Center>
+                <Center>
+                    <Stack direction="row" spacing={1}>
+                        <Text as="span" fontSize='md'>Nothin here yet, go to </Text>
+                        <Text as="span" fontSize='md' color="teal">
+                            <NextLink href="/structures" passHref>
+                                <Link>Structures</Link>
+                            </NextLink>
+                        </Text>
+                    </Stack>
+                </Center>
+            </Container>
         </>
     )
 }
