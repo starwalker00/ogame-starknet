@@ -15,7 +15,7 @@ const Structures: NextPageWithLayout = () => {
     const [dataStructures] = useStructures();
     // const hasDataStructures = dataStructures.length > 0;
     return (
-        <Container maxW={'7xl'} p="12" border='2px solid teal'>
+        <Container maxW={'4xl'} p="12" border='2px solid teal'>
             <Heading>Structures</Heading>
 
             {
