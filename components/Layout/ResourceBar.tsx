@@ -38,14 +38,14 @@ export default function ResourceBar() {
         method: 'balanceOf',
         args: account ? [account] : undefined,
     })
-    const { contract: deuteriumContract } = useCrystalContract()
+    const { contract: deuteriumContract } = useDeuteriumContract()
     const { data: deuteriumBalance, loading: loadingDeuterium, error: errorDeuterium } = useStarknetCall({
         contract: deuteriumContract,
         method: 'balanceOf',
         args: account ? [account] : undefined,
     })
 
-    const coloModeValue = useColorModeValue('gray.300', 'gray.600');
+    const colorModeValue = useColorModeValue('gray.300', 'gray.600');
     if (!hasAccount) {
         return (null)
         // return (
@@ -63,7 +63,7 @@ export default function ResourceBar() {
     return (
         <>
             <Box
-                bg={coloModeValue}
+                bg={colorModeValue}
                 width={{ base: '90%', md: '70%' }}
                 mx='auto' my='20px'
                 px='auto' py='12px'
