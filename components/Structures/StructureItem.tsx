@@ -1,5 +1,5 @@
 import { Center, Container, Heading, Stack, Button, Skeleton } from '@chakra-ui/react'
-import { VStack, Flex, Text, Box, Image, Divider, Spacer } from '@chakra-ui/react'
+import { VStack, Flex, Text, Box, Image, Divider, Spacer, Tag, Badge } from '@chakra-ui/react'
 import { Structure } from '@custom-types/ogame';
 
 import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react/core'
@@ -40,7 +40,12 @@ export default function StructureItem({ structure }: StructureProps) {
                             {
                                 !hasLevel
                                     ? <Skeleton>level{' '}10</Skeleton>
-                                    : <Text>level{' '}{structure.level.toString(10)}</Text>
+                                    :
+                                    <>
+                                        <Text>level{' '}{structure.level.toString(10)}</Text>
+                                        <Spacer />
+                                        {structure.isUpgrading && <Tag colorScheme="yellow">Upgrading</Tag>}
+                                    </>
                             }
                         </Stack>
                         <Divider orientation='horizontal' />

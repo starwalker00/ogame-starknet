@@ -50,7 +50,7 @@ export const useStructures = () => {
         let struct: Structure = {
             name: structuresLabel[i],
             level: dataStructuresLevels?.[i] ? toBN(dataStructuresLevels?.[i]) : undefined,
-            isUpgrading: false,//TODO: get real value from view function
+            isUpgrading: true,//TODO: get real value from view function
             upgrade_costs: {
                 metal: dataStructuresUpgradeCost?.[i] ? toBN(dataStructuresUpgradeCost?.[i]?.metal) : undefined,
                 crystal: dataStructuresUpgradeCost?.[i] ? toBN(dataStructuresUpgradeCost?.[i]?.crystal) : undefined,
