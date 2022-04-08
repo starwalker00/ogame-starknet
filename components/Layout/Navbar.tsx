@@ -8,8 +8,12 @@ import {
     useDisclosure,
     useColorModeValue,
     Stack,
+    useColorMode,
+    Button,
+    Spacer
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 import { useStarknet } from '@starknet-react/core'
 import { ConnectWallet } from '@components/Layout/ConnectWallet';
@@ -17,6 +21,7 @@ import { ConnectWallet } from '@components/Layout/ConnectWallet';
 export default function Navbar() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { account } = useStarknet();
+    const { colorMode, toggleColorMode } = useColorMode();
 
     return (
         <>
@@ -29,8 +34,8 @@ export default function Navbar() {
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
                     />
-                    <HStack spacing={8} alignItems={'center'}>
-                        <Box>Logo</Box>
+                    <HStack justifyContent='space-between' width={'full'}>
+                        {/* <Box>Logo</Box> */}
                         <HStack
                             as={'nav'}
                             spacing={4}
@@ -45,8 +50,13 @@ export default function Navbar() {
                                 <Link>About</Link>
                             </NextLink>
                         </HStack>
+                        <HStack>
+                            <Button onClick={toggleColorMode}>
+                                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                            </Button>
+                            <ConnectWallet />
+                        </HStack>
                     </HStack>
-                    <ConnectWallet />
                 </Flex>
 
                 {isOpen ? (
