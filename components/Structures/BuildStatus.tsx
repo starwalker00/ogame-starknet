@@ -24,6 +24,15 @@ export default function BuildStatus() {
     console.log(buildTime);
 
     let isBuilding = buildTime?.isAfter(now);
+    // buildTime workflow :
+    // when upgrade_start is called, buildTime is in the future
+    // when buildTime is in the past, user can call upgrade_complete
+    // upgrade_complete reset buildtime to 0
+
+    // in essence :
+    // a structure is ready to upgrade_start = buildtime is zero (buildqueue for every building is false)
+    // a structure is building = buildtime is in future and buildqueue value for this struct is true, can't build anything else in the meantime
+    // a structure is ready to upgrade_complete = buildtime is in past but not zero and buildqueue value is true, can't build anything else in the meantime
 
     return (
         <>
@@ -32,8 +41,8 @@ export default function BuildStatus() {
                     !buildTime
                         ? <Skeleton>building until xxxxxxxxxxxxxxxxxxxxxxxxx</Skeleton>
                         : isBuilding
-                            ? <Text>building until {buildTime.toString()}</Text>
-                            : <Text>finished building {buildTime.toString()}</Text>
+                            ? <Text>Building until {buildTime.toString()}</Text>
+                            : <Text>Nothing is being built</Text>
                 }
             </Box>
         </>
