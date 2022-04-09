@@ -17,7 +17,7 @@ const Structures: NextPageWithLayout = () => {
     const [dataStructures, isUpgradingAny] = useStructures();
     // const hasDataStructures = dataStructures.length > 0;
     return (
-        <Container maxW={'4xl'} p="12" border='2px solid teal'>
+        <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
             {
                 !hasAccount
                     ?
@@ -28,7 +28,7 @@ const Structures: NextPageWithLayout = () => {
                     </>
                     :
                     <>
-                        <Heading>Structures</Heading>
+                        <Heading px={12}>Structures</Heading>
                         <Box margin={10}>
                             <BuildStatus />
                         </Box>

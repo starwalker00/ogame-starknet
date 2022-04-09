@@ -56,26 +56,30 @@ export default function StructureItem({ structure }: StructureProps) {
                             </Text>
                         </Box>
                         <Divider orientation='horizontal' />
-                        <Stack direction='row' alignItems={'center'}>
-                            <Heading size='xs' textAlign={'center'}>Upgrade <br />for :</Heading>
-                            {
-                                !hasUpgradeCosts
-                                    ?
-                                    < Stack direction='row'>
-                                        <Skeleton>XXXX{' '}metal</Skeleton>
-                                        <Skeleton>XXXX{' '}crystal</Skeleton>
-                                        <Skeleton>XXXX{' '}deuterium</Skeleton>
-                                    </Stack>
-                                    :
-                                    <Stack direction='row'>
-                                        <Text textAlign='center'>{structure.upgrade_costs.metal.toString(10)}<br />metal</Text>
-                                        <Text textAlign='center'>{structure.upgrade_costs.crystal.toString(10)}<br />crystal</Text>
-                                        <Text textAlign='center'>{structure.upgrade_costs.deuterium.toString(10)}<br />deuterium</Text>
-                                    </Stack>
-                            }
+                        <Stack direction={{ base: 'column', md: 'row' }} alignItems={'center'}>
+                            <Stack direction='row' alignItems={'center'}>
+                                <Heading size='xs' textAlign={'center'}>Upgrade <br />for :</Heading>
+                                {
+                                    !hasUpgradeCosts
+                                        ?
+                                        < Stack direction='row'>
+                                            <Skeleton>XXXX{' '}metal</Skeleton>
+                                            <Skeleton>XXXX{' '}crystal</Skeleton>
+                                            <Skeleton>XXXX{' '}deuterium</Skeleton>
+                                        </Stack>
+                                        :
+                                        <Stack direction='row'>
+                                            <Text textAlign='center'>{structure.upgrade_costs.metal.toString(10)}<br />metal</Text>
+                                            <Text textAlign='center'>{structure.upgrade_costs.crystal.toString(10)}<br />crystal</Text>
+                                            <Text textAlign='center'>{structure.upgrade_costs.deuterium.toString(10)}<br />deuterium</Text>
+                                        </Stack>
+                                }
+                            </Stack>
                             <Spacer />
-                            <Button size='xs' onClick={() => invokeUpgradeStart({ args: [] })}>Start upgrade</Button>
-                            <Button size='xs' onClick={() => invokeUpgradeComplete({ args: [] })}>Complete upgrade</Button>
+                            <Stack direction='row'>
+                                <Button size='xs' onClick={() => invokeUpgradeStart({ args: [] })}>Start upgrade</Button>
+                                <Button size='xs' onClick={() => invokeUpgradeComplete({ args: [] })}>Complete upgrade</Button>
+                            </Stack>
                         </Stack>
                     </Stack>
                 </Stack>

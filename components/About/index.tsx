@@ -8,8 +8,8 @@ import { Container, Center, Stack, Heading, Text, Link } from '@chakra-ui/react'
 const About: NextPageWithLayout = () => {
     return (
         <>
-            <Container maxW={'4xl'} p="12" border='2px solid teal'>
-                <Heading>About</Heading>
+            <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
+                <Heading px={12}>About</Heading>
                 <Center>
                     <Stack direction="row" spacing={1}>
                         <Text as="span" fontSize='md'>Nothing here yet, go to </Text>
