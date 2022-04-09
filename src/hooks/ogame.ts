@@ -1,7 +1,7 @@
 import { useContract } from '@starknet-react/core'
 import { Abi } from 'starknet'
 
-import OgameAbi from '../abi/ogame.json'
+import OgameAbi from 'src/abi/ogame.json'
 
 export function useOgameContract() {
     return useContract({

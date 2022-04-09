@@ -1,5 +1,5 @@
 import { useStarknetCall } from "@starknet-react/core";
-import { useOgameContract } from "./ogame";
+import { useOgameContract } from "src/hooks/ogame";
 import { toBN } from "starknet/dist/utils/number";
 import dayjs from "dayjs";
 
