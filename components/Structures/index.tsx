@@ -14,21 +14,28 @@ import { ReadAddressInPage } from '@components/Layout/ReadAddressInPage'
 
 import { useAppContext } from '@components/Context/AppContext'
 import { namedConsoleLog, truncateEthAddress } from 'lib/helper'
+import { useBuildTime } from 'hooks/buildTime'
 
 const Structures: NextPageWithLayout = () => {
+    // accounts
     const { account } = useStarknet();
     const hasSignedAccount = Boolean(account);
     const { contextAccount } = useAppContext();
     const hasContextAccount = Boolean(contextAccount);
+    // structure data
     const [dataStructures, isUpgradingAny] = useStructures(contextAccount);
+    // const hasDataStructures = dataStructures.length > 0;
+
+    // build time data
+    const [buildTime] = useBuildTime(contextAccount);
+
     namedConsoleLog('account', account);
     namedConsoleLog('contextAccount', contextAccount);
 
-    // const hasDataStructures = dataStructures.length > 0;
     return (
         <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
             {
-                !hasSignedAccount &&
+                // !hasSignedAccount &&
                 <>
                     <Center py={12}>
                         <ConnectWalletInPage />
@@ -72,7 +79,7 @@ const Structures: NextPageWithLayout = () => {
                 <>
                     <Heading px={12}>Structures</Heading>
                     <Box margin={10}>
-                        <BuildStatus />
+                        <BuildStatus buildTime={buildTime} />
                     </Box>
                     <Stack direction='column' spacing={8}>
                         {
