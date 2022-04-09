@@ -31,7 +31,7 @@ export default function StructureItem({ structure }: StructureProps) {
             <Box p={0} shadow='md' borderWidth='1px'>
                 <Stack direction='row'>
                     <Image
-                        src={"https://via.placeholder.com/180"}
+                        src={structure.imageSrc}
                         alt={structure.name}
                     />
                     <Stack direction='column' width={'full'} p={2}>
@@ -51,8 +51,7 @@ export default function StructureItem({ structure }: StructureProps) {
                         <Divider orientation='horizontal' />
                         <Box>
                             <Text color='gray.500'>
-                                &quot;The quick brown fox jumps over the lazy dog&quot; is an English-language pangram—a
-                                sentence that contains all of the letters of the English alphabet.
+                                {structure.description}
                             </Text>
                         </Box>
                         <Divider orientation='horizontal' />

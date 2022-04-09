@@ -11,6 +11,8 @@ export const Resource = {
 // structure
 export interface Structure {
     name: string;
+    description: string;
+    imageSrc: string;
     level: BigNumberish;
     isUpgrading: boolean;
     upgrade_costs: UpgradeCosts;

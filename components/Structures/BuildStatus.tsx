@@ -21,7 +21,7 @@ export default function BuildStatus() {
     })
     let now = dayjs();
     let buildTime = data?.[0] ? dayjs.unix(toBN(data?.[0]).toString(10)) : undefined;
-    console.log(buildTime);
+    // console.log(buildTime);
 
     let isBuilding = buildTime?.isAfter(now);
     // buildTime workflow :

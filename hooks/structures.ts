@@ -3,8 +3,33 @@ import { useOgameContract } from "./ogame";
 import { toBN } from "starknet/dist/utils/number";
 import { Structure } from "@custom-types/ogame";
 
-const baseLabel = ['metal', 'crystal', 'deuterium', 'solar_plant', 'robot_factory'];
-const structuresLabel = ['metal_mine', 'crystal_mine', 'deuterium_mine', 'solar_plant', 'robot_factory'];
+const baseLabel = [
+    'metal',
+    'crystal',
+    'deuterium',
+    'solar_plant',
+    'robot_factory'
+];
+const structuresLabel = [
+    'metal_mine',
+    'crystal_mine',
+    'deuterium_mine',
+    'solar_plant',
+    'robot_factory'];
+const structuresDescription = [
+    "'The quick brown fox jumps over the lazy dog' is an English-language pangram—a sentence that contains all of the letters of the English alphabet.",
+    "'The quick brown fox jumps over the lazy dog' is an English-language pangram—a sentence that contains all of the letters of the English alphabet.",
+    "'The quick brown fox jumps over the lazy dog' is an English-language pangram—a sentence that contains all of the letters of the English alphabet.",
+    "'The quick brown fox jumps over the lazy dog' is an English-language pangram—a sentence that contains all of the letters of the English alphabet.",
+    "'The quick brown fox jumps over the lazy dog' is an English-language pangram—a sentence that contains all of the letters of the English alphabet."
+];
+const structuresImageSrc = [
+    "https://via.placeholder.com/180",
+    "https://via.placeholder.com/180",
+    "https://via.placeholder.com/180",
+    "https://via.placeholder.com/180",
+    "https://via.placeholder.com/180"
+];
 
 let dataStructures: Structure[] = new Array(structuresLabel.length)
 
@@ -49,6 +74,8 @@ export const useStructures = () => {
     for (let i = 0; i < structuresLabel.length; i++) {
         let struct: Structure = {
             name: structuresLabel[i],
+            description: structuresDescription[i],
+            imageSrc: structuresImageSrc[i].concat("?text=").concat(structuresLabel[i]),
             level: dataStructuresLevels?.[i] ? toBN(dataStructuresLevels?.[i]) : undefined,
             isUpgrading: true,//TODO: get real value from view function
             upgrade_costs: {
