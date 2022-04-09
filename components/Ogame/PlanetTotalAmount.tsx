@@ -2,7 +2,7 @@ import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react
 import { useOgameContract } from '../../hooks/ogame'
 
 export function PlanetTotalAmount() {
-    const { account } = useStarknet()
+    // const { account } = useStarknet()
     const { contract: ogame } = useOgameContract()
     const { data, loading, error } = useStarknetCall({
         contract: ogame,
@@ -10,9 +10,9 @@ export function PlanetTotalAmount() {
         args: []
     })
 
-    if (!account) {
-        return <div>Please connect Argent X</div>
-    }
+    // if (!account) {
+    //     return <div>Please connect Argent X</div>
+    // }
 
     if (loading) {
         return <div>loading...</div>

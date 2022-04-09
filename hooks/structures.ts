@@ -1,4 +1,4 @@
-import { useStarknet, useStarknetCall } from "@starknet-react/core";
+import { useStarknetCall } from "@starknet-react/core";
 import { useOgameContract } from "./ogame";
 import { toBN } from "starknet/dist/utils/number";
 import { Structure } from "@custom-types/ogame";
@@ -33,9 +33,8 @@ const structuresImageSrc = [
 
 let dataStructures: Structure[] = new Array(structuresLabel.length)
 
-export const useStructures = () => {
-    const { account } = useStarknet()
-    const { contract: ogame } = useOgameContract()
+export const useStructures = (account: string) => {
+    const { contract: ogame } = useOgameContract();
 
     // get_structures_levels 
     const {

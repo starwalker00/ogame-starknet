@@ -2,21 +2,28 @@ import NextLink from "next/link"
 import { useStarknet, InjectedConnector } from '@starknet-react/core'
 import {
     Button,
-    Spacer,
     Stack,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
     Link,
     Text
 } from '@chakra-ui/react';
-import { ChevronDownIcon, SmallCloseIcon } from '@chakra-ui/icons';
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { truncateEthAddress } from 'lib/helper';
+import { useDispatchContext } from "@components/Context/AppContext";
+import { useEffect } from "react";
 
 export function ConnectWalletInPage() {
-    const { account, connect } = useStarknet()
+    const { account, connect } = useStarknet();
+    const dispatch = useDispatchContext();
+
+    // change context account on connection to argent x
+    useEffect(() => {
+        changeContextAccount(account);
+    }, [account]);
+
+    function changeContextAccount(account: string | undefined) {
+        // @ts-ignore
+        dispatch({ type: 'set_contextAccount', payload: account });
+    }
+
     return (
         <Stack direction="column">
             <Button
@@ -28,7 +35,7 @@ export function ConnectWalletInPage() {
                 <Text as="span" fontSize='xs'>Learn more about</Text>
                 <Text as="span" fontSize='xs' color="rgb(243, 106, 61)">
                     <NextLink href="https://www.argent.xyz/argent-x/" passHref>
-                        <Link isExternal >Argent X for StarkNet</Link>
+                        <Link isExternal>Argent X for StarkNet</Link>
                     </NextLink>
                 </Text>
                 <ExternalLinkIcon mx='2px' boxSize={4} />
