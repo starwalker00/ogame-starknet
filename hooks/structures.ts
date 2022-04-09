@@ -67,8 +67,8 @@ export const useStructures = () => {
     // console.log(dataStructures);
 
     // check if any structure is upgrading
-    let isUpgradingValues = dataStructures.map((struct) => struct.isUpgrading);
-    let isUpgradingAny = isUpgradingValues.reduce((acc: boolean, current: boolean) => acc || current);
+    let isUpgradingValues: boolean[] = dataStructures.map((struct: Structure) => struct.isUpgrading);
+    let isUpgradingAny: boolean = isUpgradingValues.reduce((acc: boolean, current: boolean) => acc || current);
     // console.log("isUpgradingAny");
     // console.log(isUpgradingAny);
 
