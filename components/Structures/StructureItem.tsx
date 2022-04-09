@@ -29,8 +29,10 @@ export default function StructureItem({ structure }: StructureProps) {
     return (
         <>
             <Box p={0} shadow='md' borderWidth='1px'>
-                <Stack direction='row'>
+                <Stack direction={{ base: 'column', md: 'row' }}>
                     <Image
+                        boxSize={{ base: '30%', md: '' }}
+                        alignSelf='center'
                         src={structure.imageSrc}
                         alt={structure.name}
                     />

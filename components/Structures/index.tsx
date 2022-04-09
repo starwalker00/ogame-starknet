@@ -49,8 +49,8 @@ const Structures: NextPageWithLayout = () => {
                     <Center py={12}>
                         <Stack direction="column" alignItems={'center'}>
                             <Text>Reading account</Text>
-                            <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip>
-                            {/* <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip> */}
+                            {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
+                            <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
                         </Stack>
                     </Center>
                 </>
@@ -61,8 +61,8 @@ const Structures: NextPageWithLayout = () => {
                     <Center py={12}>
                         <Stack direction="column" alignItems={'center'}>
                             <Text>Writing with account</Text>
-                            <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip>
-                            {/* <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip> */}
+                            {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
+                            <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
                         </Stack>
                     </Center>
                 </>
