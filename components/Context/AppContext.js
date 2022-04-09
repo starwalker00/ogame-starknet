@@ -4,6 +4,8 @@ import { namedConsoleLog } from '../../lib/helpers';
 const AppStateContext = createContext();
 const AppDispatchContext = createContext();
 
+let initialState = null;//TODO
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'set_profileID':
