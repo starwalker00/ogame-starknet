@@ -19,14 +19,6 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-    "paths": {
-      "@components*": [
-        "components*"
-      ],
-      "@custom-types*": [
-        "custom-types*"
-      ],
-    }
   },
   "include": [
     "next-env.d.ts",
