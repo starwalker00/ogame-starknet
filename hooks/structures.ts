@@ -6,7 +6,7 @@ import { Structure } from "@custom-types/ogame";
 const baseLabel = ['metal', 'crystal', 'deuterium', 'solar_plant', 'robot_factory'];
 const structuresLabel = ['metal_mine', 'crystal_mine', 'deuterium_mine', 'solar_plant', 'robot_factory'];
 
-let dataStructures: Array<Structure> = new Array(structuresLabel.length)
+let dataStructures: Structure[] = new Array(structuresLabel.length)
 
 export const useStructures = () => {
     const { account } = useStarknet()
@@ -65,5 +65,12 @@ export const useStructures = () => {
     }
     // console.log("dataStructures");
     // console.log(dataStructures);
-    return [dataStructures];
+
+    // check if any structure is upgrading
+    let isUpgradingValues = dataStructures.map((struct) => struct.isUpgrading);
+    let isUpgradingAny = isUpgradingValues.reduce((acc: boolean, current: boolean) => acc || current);
+    // console.log("isUpgradingAny");
+    // console.log(isUpgradingAny);
+
+    return [dataStructures, isUpgradingAny] as const;
 };

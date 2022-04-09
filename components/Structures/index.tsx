@@ -14,7 +14,7 @@ import { ConnectWalletInPage } from '@components/Layout/ConnectWalletInPage'
 const Structures: NextPageWithLayout = () => {
     const { account } = useStarknet();
     const hasAccount = Boolean(account);
-    const [dataStructures] = useStructures();
+    const [dataStructures, isUpgradingAny] = useStructures();
     // const hasDataStructures = dataStructures.length > 0;
     return (
         <Container maxW={'4xl'} p="12" border='2px solid teal'>
