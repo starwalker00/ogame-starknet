@@ -16,7 +16,10 @@ import {
     TableCaption,
     TableContainer,
 } from '@chakra-ui/react'
-import { truncateEthAddress } from 'src/lib/helper'
+import { namedConsoleLog, truncateEthAddress } from 'src/lib/helper'
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'; // import plugin
+dayjs.extend(relativeTime); // use plugin
 
 type LeaderboardType = {
     updatedAt: string;
@@ -32,7 +35,14 @@ interface LeaderboardProps {
 }
 
 const Leaderboard = ({ leaderboard }: LeaderboardProps) => {
+    // date management
     const updatedAt = leaderboard?.updatedAt;
+    const updatedAtDate = new Date(updatedAt);
+    const updatedAtDayjs = dayjs(updatedAtDate);
+    const now = dayjs();
+    const relativeUpdatedAtDayjs = updatedAtDayjs?.from(now);
+
+    // leaders
     const leaders = leaderboard?.leaders;
     const hasLeaders = leaders?.length > 0;
     return (
@@ -53,6 +63,10 @@ const Leaderboard = ({ leaderboard }: LeaderboardProps) => {
                     <Stack direction="column" spacing={1}>
                         <TableContainer>
                             <Table variant='simple'>
+                                <TableCaption>Last update :
+                                    <br />{updatedAtDayjs.format('DD/MM/YYYY HH:mm:ss')}
+                                    <br />{relativeUpdatedAtDayjs}
+                                </TableCaption>
                                 <Thead>
                                     <Tr>
                                         <Th>Points</Th>
@@ -93,10 +107,11 @@ Leaderboard.getLayout = function getLayout(page: ReactElement) {
 
 export const getStaticProps = async () => {
     const res = await fetch(process.env.LEADERBOARD_DATA_ENDPOINT || "https://raw.githubusercontent.com/starwalker00/ogame-starknet-data/main/main.json");
-    const leaderboard: LeaderboardProps = await res.json();
+    const leaderboard: LeaderboardType = await res.json();
+    namedConsoleLog("leaderboard", leaderboard);
     return {
         props: {
-            leaderboard: leaderboard.leaderboard,
+            leaderboard: leaderboard,
         },
     }
 }
