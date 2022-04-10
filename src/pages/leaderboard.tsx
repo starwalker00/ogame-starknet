@@ -1,0 +1,104 @@
+// @ts-nocheckhh
+import type { AppPropsWithLayout, NextPageWithLayout } from 'src/custom-types/page'
+import type { ReactElement } from 'react'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import NextLink from "next/link"
+import { Layout, Navbar } from 'src/components/Layout'
+import { Container, Center, Stack, Heading, Text, Link } from '@chakra-ui/react'
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+} from '@chakra-ui/react'
+import { truncateEthAddress } from 'src/lib/helper'
+
+type LeaderboardType = {
+    updatedAt: string;
+    leaders: Leaders[];
+}
+type Leaders = {
+    owner: string;
+    points: string;
+}
+
+interface LeaderboardProps {
+    leaderboard: LeaderboardType,
+}
+
+const Leaderboard = ({ leaderboard }: LeaderboardProps) => {
+    const updatedAt = leaderboard?.updatedAt;
+    const leaders = leaderboard?.leaders;
+    const hasLeaders = leaders?.length > 0;
+    return (
+        <>
+            <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
+                <Heading px={12}>Leaderboard</Heading>
+                <Center>
+                    <Stack direction="row" spacing={1}>
+                        <Text as="span" fontSize='md'>Nothing here yet, go to </Text>
+                        <Text as="span" fontSize='md' color="teal">
+                            <NextLink href="/structures" passHref>
+                                <Link>Structures</Link>
+                            </NextLink>
+                        </Text>
+                    </Stack>
+                </Center>
+                <Center py={12}>
+                    <Stack direction="column" spacing={1}>
+                        <TableContainer>
+                            <Table variant='simple'>
+                                <Thead>
+                                    <Tr>
+                                        <Th>Points</Th>
+                                        <Th>Owner</Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
+                                    {
+                                        hasLeaders &&
+                                        leaders.map(
+                                            leader =>
+                                            (
+                                                <Tr key={leader.owner}>
+                                                    <Td>{leader.points}</Td>
+                                                    <Td>{truncateEthAddress(leader.owner)}</Td>
+                                                </Tr>
+                                            )
+                                        )
+                                    }
+                                </Tbody>
+                            </Table>
+                        </TableContainer>
+                    </Stack>
+                </Center>
+            </Container>
+        </>
+    )
+}
+
+Leaderboard.getLayout = function getLayout(page: ReactElement) {
+    return (
+        <Layout>
+            <Navbar />
+            {page}
+        </Layout>
+    )
+}
+
+export const getStaticProps = async () => {
+    const res = await fetch(process.env.LEADERBOARD_DATA_ENDPOINT || "https://raw.githubusercontent.com/starwalker00/ogame-starknet-data/main/main.json");
+    const leaderboard: LeaderboardProps = await res.json();
+    return {
+        props: {
+            leaderboard: leaderboard.leaderboard,
+        },
+    }
+}
+
+export default Leaderboard
