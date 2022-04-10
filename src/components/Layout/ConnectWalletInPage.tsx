@@ -8,21 +8,19 @@ import {
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { useDispatchContext } from "src/components/Context/AppContext";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export function ConnectWalletInPage() {
     const { account, connect } = useStarknet();
     const dispatch = useDispatchContext();
 
     // change context account on connection to argent x
-    useEffect(() => {
-        changeContextAccount(account);
-    }, [account]);
-
-    function changeContextAccount(account: string | undefined) {
-        // @ts-ignore
+    const changeContextAccount = useCallback(() => {
         dispatch({ type: 'set_contextAccount', payload: account });
-    }
+    }, [account, dispatch]);
+    useEffect(() => {
+        changeContextAccount();
+    }, [changeContextAccount]);
 
     return (
         <Stack direction="column">

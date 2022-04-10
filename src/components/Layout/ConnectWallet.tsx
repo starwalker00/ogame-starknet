@@ -10,21 +10,19 @@ import {
 import { ChevronDownIcon, SmallCloseIcon } from '@chakra-ui/icons';
 import { truncateEthAddress } from 'src/lib/helper';
 import { useDispatchContext } from 'src/components/Context/AppContext';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export function ConnectWallet() {
     const { account, connect } = useStarknet()
     const dispatch = useDispatchContext();
 
     // change context account on connection to argent x
-    useEffect(() => {
-        changeContextAccount(account);
-    }, [account])
-
-    function changeContextAccount(account: string | undefined) {
-        // @ts-ignore
+    const changeContextAccount = useCallback(() => {
         dispatch({ type: 'set_contextAccount', payload: account });
-    }
+    }, [account, dispatch]);
+    useEffect(() => {
+        changeContextAccount();
+    }, [changeContextAccount]);
 
     if (account) {
         return (
@@ -43,7 +41,7 @@ export function ConnectWallet() {
                             <SmallCloseIcon />
                         </Stack>
                     </MenuItem>
-                    <MenuItem onClick={() => changeContextAccount(account)}>
+                    <MenuItem onClick={() => changeContextAccount()}>
                         Use this account
                     </MenuItem>
                 </MenuList>
