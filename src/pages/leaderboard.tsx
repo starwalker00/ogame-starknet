@@ -98,7 +98,7 @@ Leaderboard.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps = async () => {
     const res = await fetch(process.env.LEADERBOARD_DATA_ENDPOINT || "https://raw.githubusercontent.com/starwalker00/ogame-starknet-data/main/main.json");
     const leaderboard: LeaderboardType = await res.json();
-    namedConsoleLog("leaderboard", leaderboard);
+    // namedConsoleLog("leaderboard", leaderboard);
     return {
         props: {
             leaderboard: leaderboard,

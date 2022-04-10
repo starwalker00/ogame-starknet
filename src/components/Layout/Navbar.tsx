@@ -46,6 +46,9 @@ export default function Navbar() {
                             <NextLink href='/structures' passHref>
                                 <Link>Structures</Link>
                             </NextLink>
+                            <NextLink href='/leaderboard' passHref>
+                                <Link>Leaderboard</Link>
+                            </NextLink>
                             <NextLink href='/test' passHref>
                                 <Link>Test</Link>
                             </NextLink>
@@ -70,6 +73,9 @@ export default function Navbar() {
                             </NextLink>
                             <NextLink href='/structures' passHref>
                                 <Link>Structures</Link>
+                            </NextLink>
+                            <NextLink href='/leaderboard' passHref>
+                                <Link>Leaderboard</Link>
                             </NextLink>
                             <NextLink href='/test' passHref>
                                 <Link>Test</Link>
