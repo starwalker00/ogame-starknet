@@ -49,16 +49,6 @@ const Leaderboard = ({ leaderboard }: LeaderboardProps) => {
         <>
             <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
                 <Heading px={12}>Leaderboard</Heading>
-                <Center>
-                    <Stack direction="row" spacing={1}>
-                        <Text as="span" fontSize='md'>Nothing here yet, go to </Text>
-                        <Text as="span" fontSize='md' color="teal">
-                            <NextLink href="/structures" passHref>
-                                <Link>Structures</Link>
-                            </NextLink>
-                        </Text>
-                    </Stack>
-                </Center>
                 <Center py={12}>
                     <Stack direction="column" spacing={1}>
                         <TableContainer>
@@ -113,6 +103,7 @@ export const getStaticProps = async () => {
         props: {
             leaderboard: leaderboard,
         },
+        revalidate: 600
     }
 }
 
