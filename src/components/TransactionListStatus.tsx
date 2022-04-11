@@ -7,7 +7,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { Stack, Spinner } from '@chakra-ui/react'
 
 function TransactionItem({ transaction }: { transaction: Transaction }) {
-    namedConsoleLog("transaction", transaction);
+    // namedConsoleLog("transaction", transaction);
     return (
         <span>
             {transaction.transactionHash} - {transaction.status}
@@ -104,7 +104,7 @@ export function TransactionListStatus() {
                         options = { ...options, status: "info" }
                         console.log(`Unrecognized status ${status}.`);
                 }
-                namedConsoleLog("transactionRefs.current", transactionRefs.current);
+                // namedConsoleLog("transactionRefs.current", transactionRefs.current);
                 // !transactionRefs.current.includes(id) ignores completely finished tx
                 if (toast.isActive(id) && !transactionRefs.current.includes(id)) {
                     //@ts-ignore
