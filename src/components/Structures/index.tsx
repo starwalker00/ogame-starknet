@@ -35,46 +35,6 @@ const Structures: NextPageWithLayout = () => {
     return (
         <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
             {
-                // !hasSignedAccount &&
-                <>
-                    <Center py={12}>
-                        <ConnectWalletInPage />
-                    </Center>
-                </>
-            }
-            {
-                // !hasContextAccount &&
-                <>
-                    <Center py={12}>
-                        <ReadAddressInPage />
-                    </Center>
-                </>
-            }
-            {
-                (hasContextAccount && !(account === contextAccount)) && // only reading stranger account
-                <>
-                    <Center py={12}>
-                        <Stack direction="column" alignItems={'center'}>
-                            <Text>Reading account</Text>
-                            {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
-                            <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
-                        </Stack>
-                    </Center>
-                </>
-            }
-            {
-                (hasContextAccount && account === contextAccount) && // writing with connected account
-                <>
-                    <Center py={12}>
-                        <Stack direction="column" alignItems={'center'}>
-                            <Text>Writing with account</Text>
-                            {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
-                            <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
-                        </Stack>
-                    </Center>
-                </>
-            }
-            {
                 (hasContextAccount) &&
                 <>
                     <Heading px={12}>Structures</Heading>
