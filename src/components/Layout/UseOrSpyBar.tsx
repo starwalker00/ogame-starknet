@@ -38,7 +38,7 @@ export function UseOrSpyBar() {
                     <HStack justifyContent='center' width={'full'}>
                         {
                             (!hasAnyAccount) &&
-                            <Stack direction={{ base: "column", sm: "row" }}>
+                            <Stack direction={{ base: "column", sm: "row" }} alignItems="center" spacing={{ base: "0", sm: "2" }}>
                                 {/* <Text>Connect Argent X or Spy account</Text> */}
                                 <ConnectWalletInSpyBar />
                                 <Text>or</Text>
@@ -47,21 +47,23 @@ export function UseOrSpyBar() {
                         }
                         {
                             (hasContextAccount && !(account === contextAccount)) &&
-                            <Stack direction={{ base: "column", sm: "row" }}>
+                            <Stack direction={{ base: "column", sm: "row" }} alignItems="center" spacing={{ base: "0", sm: "2" }}>
                                 <Text>Spying account</Text>
                                 {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
                                 <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
-                                <Divider px={4} orientation='vertical' />
+                                {/* <Divider px={4} orientation='vertical' /> */}
+                                <Text>{' '}&#x2013;{' '}</Text>
                                 <SpyAccountInSpyBar another={true} />
                             </Stack>
                         }
                         {
                             (hasContextAccount && (account === contextAccount)) &&
-                            <Stack direction={{ base: "column", sm: "row" }}>
+                            <Stack direction={{ base: "column", sm: "row" }} alignItems="center" spacing={{ base: "0", sm: "2" }}>
                                 <Text>Using account</Text>
                                 {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
                                 <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
-                                <Divider px={4} orientation='vertical' />
+                                {/* <Divider px={4} orientation='vertical' /> */}
+                                <Text>{' '}&#x2013;{' '}</Text>
                                 <SpyAccountInSpyBar another={false} />
                             </Stack>
                         }
