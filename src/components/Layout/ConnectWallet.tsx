@@ -60,5 +60,5 @@ export function ConnectWallet() {
         )
     }
 
-    return <button onClick={() => connect(new InjectedConnector())}>Connect</button>
+    return <Button onClick={() => connect(new InjectedConnector())}>Connect Wallet</Button>
 }
