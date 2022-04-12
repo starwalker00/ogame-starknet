@@ -19,7 +19,7 @@ export function ConnectWalletInSpyBar() {
         <Link
             onClick={() => connect(new InjectedConnector())}
         >
-            Connect Argent X Wallet
+            Connect Argent X
         </Link>
     )
 }

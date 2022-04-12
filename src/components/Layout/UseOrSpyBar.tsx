@@ -12,7 +12,8 @@ import {
     Button,
     Spacer,
     Text,
-    Tooltip
+    Tooltip,
+    Divider
 } from '@chakra-ui/react';
 
 import { useStarknet } from '@starknet-react/core'
@@ -37,28 +38,32 @@ export function UseOrSpyBar() {
                     <HStack justifyContent='center' width={'full'}>
                         {
                             (!hasAnyAccount) &&
-                            <>
+                            <Stack direction={{ base: "column", sm: "row" }}>
                                 {/* <Text>Connect Argent X or Spy account</Text> */}
                                 <ConnectWalletInSpyBar />
                                 <Text>or</Text>
-                                <SpyAccountInSpyBar />
-                            </>
+                                <SpyAccountInSpyBar another={false} />
+                            </Stack>
                         }
                         {
                             (hasContextAccount && !(account === contextAccount)) &&
-                            <>
+                            <Stack direction={{ base: "column", sm: "row" }}>
                                 <Text>Spying account</Text>
                                 {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
                                 <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
-                            </>
+                                <Divider px={4} orientation='vertical' />
+                                <SpyAccountInSpyBar another={true} />
+                            </Stack>
                         }
                         {
                             (hasContextAccount && (account === contextAccount)) &&
-                            <>
+                            <Stack direction={{ base: "column", sm: "row" }}>
                                 <Text>Using account</Text>
                                 {/* <Tooltip label={contextAccount}><Text fontSize='sm'>{contextAccount}</Text></Tooltip> */}
                                 <Tooltip label={contextAccount}><Text>{truncateEthAddress(contextAccount)}</Text></Tooltip>
-                            </>
+                                <Divider px={4} orientation='vertical' />
+                                <SpyAccountInSpyBar another={false} />
+                            </Stack>
                         }
                     </HStack>
                 </Flex>
