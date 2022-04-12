@@ -68,7 +68,7 @@ export function TransactionListStatus() {
                                     <Text>
                                         <Link isExternal href={"https://goerli.voyager.online/tx/".concat(transactionHash)}>
                                             {truncateEthAddress(transactionHash)}
-                                            <ExternalLinkIcon mx='2px' />
+                                            <ExternalLinkIcon mx='8px' />
                                         </Link>
                                     </Text>
                                 </Stack>,

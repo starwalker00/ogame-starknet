@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import { TransactionList } from '../TransactionList'
-import { TransactionListStatus } from '../TransactionListStatus'
-import { Divider } from '@chakra-ui/layout'
+import { TransactionListStatus } from '../TransactionManagement/TransactionListStatus'
 
 export default function Layout({ children }: any) {
     return (
@@ -9,8 +7,6 @@ export default function Layout({ children }: any) {
             <Head>
                 <title>Template</title>
             </Head>
-            <TransactionList />
-            <Divider />
             <TransactionListStatus />
             <main>{children}</main>
         </>
