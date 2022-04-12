@@ -11,7 +11,7 @@ import { uint256ToBN } from 'starknet/dist/utils/uint256'
 
 export default function ResourceItem({ type, erc20Balance, availableBalance, loadingAvailable, loadingErc20 }: any) {
 
-    let erc20BalanceValue = erc20Balance ? uint256ToBN(erc20Balance?.[0])?.toString(10) : undefined
+    let erc20BalanceValue = erc20Balance ? uint256ToBN(erc20Balance?.[0])?.div(toBN("1000000000000000000")).toString(10) : undefined
     let availableBalanceValue = availableBalance ? toBN(availableBalance)?.toString(10) : undefined
 
     // briefly lighten when value change
