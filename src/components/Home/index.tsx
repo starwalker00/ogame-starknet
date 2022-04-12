@@ -29,7 +29,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
     return (
         <Layout>
             <Navbar />
-            <ResourceBar />
             {page}
         </Layout>
     )
