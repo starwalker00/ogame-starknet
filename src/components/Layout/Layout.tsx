@@ -5,7 +5,7 @@ export default function Layout({ children }: any) {
     return (
         <>
             <Head>
-                <title>Template</title>
+                <title>Ogame on Starknet</title>
             </Head>
             <TransactionListStatus />
             <main>{children}</main>
