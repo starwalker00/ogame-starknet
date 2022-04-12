@@ -11,7 +11,7 @@ import { useStarknet } from '@starknet-react/core'
 import { Structure } from 'src/custom-types/ogame'
 import { ConnectWalletInPage } from 'src/components/Layout/ConnectWalletInPage'
 import { ReadAddressInPage } from 'src/components/Layout/ReadAddressInPage'
-
+import { UseOrSpyBar } from 'src/components/Layout/UseOrSpyBar'
 import { useAppContext } from 'src/components/Context/AppContext'
 import { namedConsoleLog, truncateEthAddress } from 'src/lib/helper'
 import { useBuildTime } from 'src/hooks/buildTime'
@@ -98,6 +98,7 @@ Structures.getLayout = function getLayout(page: ReactElement) {
     return (
         <Layout>
             <Navbar />
+            <UseOrSpyBar />
             <ResourceBar />
             {page}
         </Layout>

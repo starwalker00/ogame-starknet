@@ -20,13 +20,13 @@ export function ReadAddressInPage() {
         <Stack direction="column" width={'80%'} alignItems='center'>
             <Input
                 textAlign='center'
-                placeholder="0x0478d216c25255154e4e6488f073561955d8d5cb03f2024fb55f903ce866dea8"
+                value={value}
                 onChange={e => setValue(e.target.value)} />
             <Button
                 px={12}
                 width={'fit-content'}
                 onClick={changeContextAccount}>
-                Set account
+                Spy account
             </Button>
         </Stack>
     )
