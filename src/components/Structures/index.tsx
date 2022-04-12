@@ -35,6 +35,14 @@ const Structures: NextPageWithLayout = () => {
     return (
         <Container maxW={'4xl'} px={0} py={12} border='2px solid teal'>
             {
+                (!hasContextAccount) &&
+                <>
+                    <Center py={12}>
+                        <ConnectWalletInPage />
+                    </Center>
+                </>
+            }
+            {
                 (hasContextAccount) &&
                 <>
                     <Heading px={12}>Structures</Heading>
