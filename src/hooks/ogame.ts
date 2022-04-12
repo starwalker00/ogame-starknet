@@ -6,6 +6,6 @@ import OgameAbi from 'src/abi/ogame.json'
 export function useOgameContract() {
     return useContract({
         abi: OgameAbi as Abi,
-        address: process.env.CONTRACT_OGAME,
+        address: process.env.NEXT_PUBLIC_CONTRACT_OGAME,
     })
 }
