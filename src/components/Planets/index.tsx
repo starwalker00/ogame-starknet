@@ -9,6 +9,7 @@ import { useAppContext } from 'src/components/Context/AppContext'
 import { useStarknet } from '@starknet-react/core'
 import { usePlanets } from 'src/hooks/planets'
 import { ConnectWalletInPage } from 'src/components/Layout/ConnectWalletInPage'
+import ColonizePlanetButton from './ColonizePlanetButton'
 
 const Planets: NextPageWithLayout = () => {
     // accounts
@@ -28,7 +29,7 @@ const Planets: NextPageWithLayout = () => {
                     (hasContextAccount) && hasPlanetID &&
                         planetID > 0
                         ?
-                        < Center>
+                        <Center>
                             <Stack direction="column" alignItems="center" spacing={1}>
                                 <Text as="span" fontSize='md'>You owned planet #{planetID.toString(10)}.</Text>
                                 <Flex height={{ base: "300", md: "400" }}>
@@ -40,9 +41,9 @@ const Planets: NextPageWithLayout = () => {
                         < Center>
                             <Stack direction="column" alignItems="center" spacing={1}>
                                 <Text as="span" fontSize='md'>You do not owned a planet.</Text>
-                                {hasSignedAccount
+                                {hasSignedAccount && (account == contextAccount)
                                     ?
-                                    <Button>Colonize a planet</Button>
+                                    <ColonizePlanetButton />
                                     :
                                     <ConnectWalletInPage />
                                 }
