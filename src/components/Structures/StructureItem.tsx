@@ -47,7 +47,7 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
             <Box className="structureitem" p={0} shadow='md' borderWidth='1px'>
                 <Stack className="structureitem-image" direction={{ base: 'column', md: 'row' }}>
                     <Image
-                        boxSize={{ base: '30%', md: '180px' }}
+                        boxSize={{ base: '0%', md: '180px' }}
                         alignSelf='center'
                         src={structure.imageSrc}
                         alt={structure.name}
@@ -66,12 +66,12 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                                             structure.isUpgrading ?
                                                 isReadyToComplete
                                                     ?
-                                                    <Tooltip label={<span>Finishes {buildTime?.format('ddd DD/MM/YYYY HH:mm:ss')}</span>}>
-                                                        <Tag colorScheme="yellow">Upgrading</Tag>
-                                                    </Tooltip>
-                                                    :
                                                     <Tooltip label={<span>Finished {buildTime?.format('ddd DD/MM/YYYY HH:mm:ss')}</span>}>
                                                         <Tag colorScheme="yellow">Ready to complete</Tag>
+                                                    </Tooltip>
+                                                    :
+                                                    <Tooltip label={<span>Finishes {buildTime?.format('ddd DD/MM/YYYY HH:mm:ss')}</span>}>
+                                                        <Tag colorScheme="yellow">Upgrading</Tag>
                                                     </Tooltip>
                                                 : null
                                         }
