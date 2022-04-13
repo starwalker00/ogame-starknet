@@ -6,9 +6,9 @@ import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react
 import { useOgameContract } from 'src/hooks/ogame'
 
 import dayjs from "dayjs";
-//@ts-ignore
-import { useTimer } from "reactjs-countdown-hook";
+import MyTimer from './MyTimer';
 import relativeTime from 'dayjs/plugin/relativeTime' // import plugin
+import { namedConsoleLog } from 'src/lib/helper';
 dayjs.extend(relativeTime); // use plugin
 
 interface StructureProps {
@@ -36,24 +36,9 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
 
     // buildTime countdown
     let now: dayjs.Dayjs = dayjs();
-    // let timeToComplete: string = now.to(buildTime);
-    let diff = now.diff(buildTime, 'second');
-    let isReadyToComplete = buildTime?.isAfter(now);
-    const {
-        isActive,
-        counter,
-        seconds,
-        minutes,
-        hours,
-        days,
-        pause,
-        resume,
-        reset,
-    } = useTimer(diff, handleTimerFinish);
-    function handleTimerFinish() {
-        console.log("times up!");
-        // alert("times up!");
-    }
+    let isReadyToComplete = buildTime?.isBefore(now);
+    let time = buildTime?.toDate() ?? undefined;
+    namedConsoleLog("time", time)
 
     return (
         <>
@@ -79,9 +64,13 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                                             structure.isUpgrading ?
                                                 isReadyToComplete
                                                     ?
-                                                    <Tag colorScheme="yellow">Upgrading</Tag>
+                                                    <Tooltip label={<span>Finishes {buildTime?.format('ddd DD/MM/YYYY HH:mm:ss')}</span>}>
+                                                        <Tag colorScheme="yellow">Upgrading</Tag>
+                                                    </Tooltip>
                                                     :
-                                                    <Tag colorScheme="yellow">Ready to complete</Tag>
+                                                    <Tooltip label={<span>Finished {buildTime?.format('ddd DD/MM/YYYY HH:mm:ss')}</span>}>
+                                                        <Tag colorScheme="yellow">Ready to complete</Tag>
+                                                    </Tooltip>
                                                 : null
                                         }
                                     </>
@@ -116,18 +105,20 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                             <Spacer />
                             {
                                 structure.isUpgrading
-                                    ? isReadyToComplete
+                                    ? isReadyToComplete //
                                         ?
-                                        <Stack direction='row' justifyItems="center">
-                                            <Tooltip label={buildTime?.format('ddd DD/MM/YYYY HH:mm:ss')}>
-                                                <Text>Finishes in {`${hours} : ${minutes} : ${seconds}`}</Text>
-                                            </Tooltip>
-                                        </Stack>
-                                        :
                                         <Stack direction='row'>
                                             <Button size='xs' onClick={() => invokeUpgradeComplete({ args: [] })}>Complete upgrade</Button>
                                         </Stack>
-                                    : isUpgradingAny // if another structure upgrading
+                                        :
+                                        <Stack direction='row'>
+                                            {
+                                                buildTime &&
+                                                //@ts-ignore
+                                                <MyTimer expiryTimestamp={time} />
+                                            }
+                                        </Stack>
+                                    : isUpgradingAny // if another structure is upgrading
                                         ?
                                         <Stack direction='row'>
                                             <Text fontSize="sm">Another structure is upgrading.</Text>
