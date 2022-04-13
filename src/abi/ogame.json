@@ -110,6 +110,42 @@
         "type": "function"
     },
     {
+        "inputs": [],
+        "name": "metal_address",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "crystal_address",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "deuterium_address",
+        "outputs": [
+            {
+                "name": "res",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
             {
                 "name": "your_address",
@@ -214,7 +250,11 @@
         "name": "build_time_completion",
         "outputs": [
             {
-                "name": "timestamp",
+                "name": "building_id",
+                "type": "felt"
+            },
+            {
+                "name": "time_end",
                 "type": "felt"
             }
         ],
@@ -287,12 +327,7 @@
     {
         "inputs": [],
         "name": "metal_upgrade_start",
-        "outputs": [
-            {
-                "name": "end_time",
-                "type": "felt"
-            }
-        ],
+        "outputs": [],
         "type": "function"
     },
     {
@@ -304,12 +339,7 @@
     {
         "inputs": [],
         "name": "crystal_upgrade_start",
-        "outputs": [
-            {
-                "name": "end_time",
-                "type": "felt"
-            }
-        ],
+        "outputs": [],
         "type": "function"
     },
     {
@@ -321,12 +351,7 @@
     {
         "inputs": [],
         "name": "deuterium_upgrade_start",
-        "outputs": [
-            {
-                "name": "end_time",
-                "type": "felt"
-            }
-        ],
+        "outputs": [],
         "type": "function"
     },
     {
@@ -338,12 +363,7 @@
     {
         "inputs": [],
         "name": "solar_plant_upgrade_start",
-        "outputs": [
-            {
-                "name": "end_time",
-                "type": "felt"
-            }
-        ],
+        "outputs": [],
         "type": "function"
     },
     {
@@ -355,12 +375,7 @@
     {
         "inputs": [],
         "name": "robot_factory_upgrade_start",
-        "outputs": [
-            {
-                "name": "end_time",
-                "type": "felt"
-            }
-        ],
+        "outputs": [],
         "type": "function"
     },
     {
