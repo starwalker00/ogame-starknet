@@ -1,26 +1,22 @@
-// @ts-nocheckjjj
 import { useReducer, useContext, createContext, Dispatch } from 'react';
 import { namedConsoleLog } from 'src/lib/helper';
 
 enum AppContextActionKind {
     setContextAccount = 'set_contextAccount'
-}
+};
 
 interface AppContext {
     contextAccount: string;
-}
+};
 
 interface AppContextAction {
     type: AppContextActionKind;
     payload: string;
-}
+};
 
 let appContext = {
     contextAccount: undefined
 };
-// let appContext = {
-//     contextAccount: "0x0478d216c25255154e4e6488f073561955d8d5cb03f2024fb55f903ce866dea8"
-// };
 
 const AppStateContext = createContext<AppContext>({} as AppContext);
 const AppDispatchContext = createContext<Dispatch<any>>({} as Dispatch<any>);
@@ -28,8 +24,8 @@ const AppDispatchContext = createContext<Dispatch<any>>({} as Dispatch<any>);
 const reducer = (state: AppContext, action: AppContextAction) => {
     switch (action.type) {
         case 'set_contextAccount':
-            namedConsoleLog('state', state);
-            namedConsoleLog('action.payload', action.payload);
+            // namedConsoleLog('state', state);
+            // namedConsoleLog('action.payload', action.payload);
             return { ...state, contextAccount: action.payload }
         default:
             throw new Error(`Unknown action: ${action.type}`)
