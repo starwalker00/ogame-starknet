@@ -22,19 +22,21 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
     const hasUpgradeMethods = Boolean(structure.upgrade_methods.start) && Boolean(structure.upgrade_methods.complete);
     const hasUpgradeCosts = structure.upgrade_costs.metal && structure.upgrade_costs.crystal && structure.upgrade_costs.deuterium
 
-    // upgrade write
+    // contract calls
     const { account } = useStarknet()
     const { contract: ogame } = useOgameContract()
+    // start upgrade
     const { invoke: invokeUpgradeStart, data, loading, error } = useStarknetInvoke({
         contract: ogame,
         method: hasUpgradeMethods ? structure.upgrade_methods.start : ""
     });
+    // complete upgrade
     const { invoke: invokeUpgradeComplete } = useStarknetInvoke({
         contract: ogame,
         method: hasUpgradeMethods ? structure.upgrade_methods.complete : ""
     });
 
-    // buildTime countdown
+    // build time logic and countdown
     let now: dayjs.Dayjs = dayjs();
     let isReadyToComplete = buildTime?.isBefore(now);
     let time = buildTime?.toDate() ?? undefined;
@@ -42,16 +44,16 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
 
     return (
         <>
-            <Box p={0} shadow='md' borderWidth='1px'>
-                <Stack direction={{ base: 'column', md: 'row' }}>
+            <Box className="structureitem" p={0} shadow='md' borderWidth='1px'>
+                <Stack className="structureitem-image" direction={{ base: 'column', md: 'row' }}>
                     <Image
                         boxSize={{ base: '30%', md: '180px' }}
                         alignSelf='center'
                         src={structure.imageSrc}
                         alt={structure.name}
                     />
-                    <Stack direction='column' width={'full'} p={2}>
-                        <Stack direction='row' alignItems={'baseline'}>
+                    <Stack className="structureitem-content" direction='column' width={'full'} p={2}>
+                        <Stack className="structureitem-header" direction='row' alignItems={'baseline'}>
                             <Heading fontSize='xl'>{structure.name}</Heading>
                             {
                                 !hasLevel
@@ -77,13 +79,13 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                             }
                         </Stack>
                         <Divider orientation='horizontal' />
-                        <Box>
+                        <Box className="structureitem-description">
                             <Text color='gray.500'>
                                 {structure.description}
                             </Text>
                         </Box>
                         <Divider orientation='horizontal' />
-                        <Stack direction={{ base: 'column', md: 'row' }} alignItems={'center'}>
+                        <Stack className="structureitem-footer" direction={{ base: 'column', md: 'row' }} alignItems={'center'}>
                             <Stack direction='row' alignItems={'center'}>
                                 <Heading size='xs' textAlign={'center'}>Upgrade <br />for :</Heading>
                                 {
