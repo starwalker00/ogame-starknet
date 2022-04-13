@@ -58,8 +58,6 @@ export const useStructures = (account: string) => {
     })
     let buildingID: BigNumberish = data?.[0] ? toBN(data?.[0]) : undefined;
     let buildTime = data?.[1] ? dayjs.unix(toBN(data?.[1]).toString(10)) : undefined;
-    console.log("build_time_completion")
-    namedConsoleLog("data", data);
 
     // get_structures_upgrade_cost
     const {

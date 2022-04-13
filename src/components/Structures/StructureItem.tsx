@@ -38,7 +38,7 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
     let now: dayjs.Dayjs = dayjs();
     let isReadyToComplete = buildTime?.isBefore(now);
     let time = buildTime?.toDate() ?? undefined;
-    namedConsoleLog("time", time)
+    // namedConsoleLog("time", time)
 
     return (
         <>
