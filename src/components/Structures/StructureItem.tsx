@@ -91,10 +91,10 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                                 {
                                     !hasUpgradeCosts
                                         ?
-                                        < Stack direction='row'>
-                                            <Skeleton>XXXX{' '}metal</Skeleton>
-                                            <Skeleton>XXXX{' '}crystal</Skeleton>
-                                            <Skeleton>XXXX{' '}deuterium</Skeleton>
+                                        <Stack direction='row'>
+                                            <Skeleton><Text textAlign='center'>XXXX<br />metal</Text></Skeleton>
+                                            <Skeleton><Text textAlign='center'>XXXX<br />crystal</Text></Skeleton>
+                                            <Skeleton><Text textAlign='center'>XXXX<br />deuterium</Text></Skeleton>
                                         </Stack>
                                         :
                                         <Stack direction='row'>

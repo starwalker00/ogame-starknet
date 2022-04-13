@@ -108,7 +108,7 @@ export default function ResourceBar() {
                             {
                                 loading || !data?.[3]
                                     ?
-                                    <Skeleton>placeholder</Skeleton>
+                                    <Skeleton><Box>XXXX</Box></Skeleton>
                                     :
                                     <Box>{toBN(data?.[3])?.toString(10)}</Box>
                             }

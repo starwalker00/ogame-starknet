@@ -29,7 +29,7 @@ export default function ResourceItem({ type, erc20Balance, availableBalance, loa
                     {
                         loadingErc20 || !erc20Balance
                             ?
-                            <Skeleton>placeholder</Skeleton>
+                            <Skeleton><Box>XXXX</Box></Skeleton>
                             :
                             // key prop necessary to animate on change
                             <Box animation={animation} key={type.concat("erc20BalanceValue")}>{erc20BalanceValue}</Box>
@@ -37,7 +37,7 @@ export default function ResourceItem({ type, erc20Balance, availableBalance, loa
                     {
                         loadingAvailable || !availableBalance
                             ?
-                            <Skeleton>placeholder</Skeleton>
+                            <Skeleton><Box>XXXX</Box></Skeleton>
                             :
                             // key prop necessary to animate on change
                             <Box animation={animation} key={type.concat("availableBalanceValue")}>{availableBalanceValue}</Box>
