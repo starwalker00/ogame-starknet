@@ -43,14 +43,14 @@ export default function Navbar() {
                             <NextLink href='/' passHref>
                                 <Link>Home</Link>
                             </NextLink>
+                            <NextLink href='/planets' passHref>
+                                <Link>Planets</Link>
+                            </NextLink>
                             <NextLink href='/structures' passHref>
                                 <Link>Structures</Link>
                             </NextLink>
                             <NextLink href='/leaderboard' passHref>
                                 <Link>Leaderboard</Link>
-                            </NextLink>
-                            <NextLink href='/about' passHref>
-                                <Link>About</Link>
                             </NextLink>
                         </HStack>
                         <HStack>
@@ -68,17 +68,14 @@ export default function Navbar() {
                             <NextLink href='/' passHref>
                                 <Link>Home</Link>
                             </NextLink>
+                            <NextLink href='/planets' passHref>
+                                <Link>Planets</Link>
+                            </NextLink>
                             <NextLink href='/structures' passHref>
                                 <Link>Structures</Link>
                             </NextLink>
                             <NextLink href='/leaderboard' passHref>
                                 <Link>Leaderboard</Link>
-                            </NextLink>
-                            <NextLink href='/test' passHref>
-                                <Link>Test</Link>
-                            </NextLink>
-                            <NextLink href='/about' passHref>
-                                <Link>About</Link>
                             </NextLink>
                         </Stack>
                     </Box>
