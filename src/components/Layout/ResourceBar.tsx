@@ -78,6 +78,7 @@ export default function ResourceBar() {
                     justifyContent={'center'}
                     spacing={{ base: 2, md: 8 }}>
                     <ResourceItem
+                        key={Resource.Metal}
                         type={Resource.Metal}
                         erc20Balance={metalBalance}
                         loadingErc20={loadingMetal}
@@ -85,6 +86,7 @@ export default function ResourceBar() {
                         loadingAvailable={loading}
                     ></ResourceItem>
                     <ResourceItem
+                        key={Resource.Crystal}
                         type={Resource.Crystal}
                         erc20Balance={crystalBalance}
                         loadingErc20={loadingCrystal}
@@ -92,6 +94,7 @@ export default function ResourceBar() {
                         loadingAvailable={loading}
                     ></ResourceItem>
                     <ResourceItem
+                        key={Resource.Deuterium}
                         type={Resource.Deuterium}
                         erc20Balance={deuteriumBalance}
                         loadingErc20={loadingDeuterium}
