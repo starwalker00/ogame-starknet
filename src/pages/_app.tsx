@@ -6,6 +6,8 @@ import theme from 'theme'
 
 import { StarknetProvider } from '@starknet-react/core'
 
+import NextNProgress from "nextjs-progressbar";
+
 function App({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page)
@@ -13,6 +15,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
     <AppProvider>
       <StarknetProvider>
         <ChakraProvider resetCSS theme={theme}>
+          <NextNProgress />
           {getLayout(<Component {...pageProps} />)}
         </ChakraProvider>
       </StarknetProvider>
