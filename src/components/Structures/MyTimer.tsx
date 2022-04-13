@@ -26,7 +26,7 @@ export default function MyTimer({ expiryTimestamp }: MyTimerProps) {
         if (expiryTimestamp) {
             restart(expiryTimestamp)
         }
-    }, [expiryTimestamp]);
+    }, [expiryTimestamp, restart]);
 
     return (
         <Tooltip label={dayjs(expiryTimestamp)?.format('ddd DD/MM/YYYY HH:mm:ss')}>
