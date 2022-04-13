@@ -110,7 +110,7 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                                     ? isReadyToComplete //
                                         ?
                                         <Stack direction='row'>
-                                            <Button size='xs' onClick={() => invokeUpgradeComplete({ args: [] })}>Complete upgrade</Button>
+                                            <Button size='md' onClick={() => invokeUpgradeComplete({ args: [] })}>Complete upgrade</Button>
                                         </Stack>
                                         :
                                         <Stack direction='row'>
@@ -127,7 +127,7 @@ export default function StructureItem({ structure, buildTime, isUpgradingAny }: 
                                         </Stack>
                                         :
                                         <Stack direction='row'>
-                                            <Button size='xs' onClick={() => invokeUpgradeStart({ args: [] })}>Start upgrade</Button>
+                                            <Button size='md' onClick={() => invokeUpgradeStart({ args: [] })}>Start upgrade</Button>
                                             {/* <Button size='xs' onClick={() => invokeUpgradeComplete({ args: [] })}>Complete upgrade</Button> */}
                                         </Stack>
                             }
