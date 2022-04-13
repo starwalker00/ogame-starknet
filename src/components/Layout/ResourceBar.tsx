@@ -9,37 +9,49 @@ import {
     Spacer,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { useStarknet, useStarknetCall, useStarknetInvoke } from '@starknet-react/core'
+import { useStarknet, useStarknetCall, useStarknetInvoke, useStarknetTransactionManager } from '@starknet-react/core'
 import { useOgameContract } from 'src/hooks/ogame'
 import { useMetalContract, useCrystalContract, useDeuteriumContract } from 'src/hooks/erc20-resources'
 import { toBN } from 'starknet/dist/utils/number';
 import { Resource } from 'src/custom-types/ogame'
 import ResourceItem from './ResourceBarElements/ResourceItem';
 import CollectResourcesButton from './ResourceBarElements/CollectResourcesButton';
+import { useEffect } from 'react';
 
 export default function ResourceBar() {
+
+    // refresh data on transactions updates
+    const { transactions } = useStarknetTransactionManager();
+    useEffect(() => {
+        console.log("Refresh ResourceBar");
+        refreshResourcesAvailable();
+        refreshMetal();
+        refreshCrystal();
+        refreshDeuterium();
+    }, [transactions]);
+
     const { account } = useStarknet();
     const hasAccount = Boolean(account);
     const { contract: ogame } = useOgameContract()
-    const { data, loading, error } = useStarknetCall({
+    const { data, loading, error, refresh: refreshResourcesAvailable } = useStarknetCall({
         contract: ogame,
         method: 'resources_available',
         args: account ? [account] : undefined
     })
     const { contract: metalContract } = useMetalContract()
-    const { data: metalBalance, loading: loadingMetal, error: errorMetal } = useStarknetCall({
+    const { data: metalBalance, loading: loadingMetal, error: errorMetal, refresh: refreshMetal } = useStarknetCall({
         contract: metalContract,
         method: 'balanceOf',
         args: account ? [account] : undefined,
     })
     const { contract: crystalContract } = useCrystalContract()
-    const { data: crystalBalance, loading: loadingCrystal, error: errorCrystal } = useStarknetCall({
+    const { data: crystalBalance, loading: loadingCrystal, error: errorCrystal, refresh: refreshCrystal } = useStarknetCall({
         contract: crystalContract,
         method: 'balanceOf',
         args: account ? [account] : undefined,
     })
     const { contract: deuteriumContract } = useDeuteriumContract()
-    const { data: deuteriumBalance, loading: loadingDeuterium, error: errorDeuterium } = useStarknetCall({
+    const { data: deuteriumBalance, loading: loadingDeuterium, error: errorDeuterium, refresh: refreshDeuterium } = useStarknetCall({
         contract: deuteriumContract,
         method: 'balanceOf',
         args: account ? [account] : undefined,

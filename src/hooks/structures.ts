@@ -1,10 +1,11 @@
-import { useStarknetCall } from "@starknet-react/core";
+import { useStarknetCall, useStarknetTransactionManager } from "@starknet-react/core";
 import { useOgameContract } from "src/hooks/ogame";
 import { toBN } from "starknet/dist/utils/number";
 import { BigNumberish } from "starknet/dist/utils/number";
 import { Structure } from "src/custom-types/ogame";
 import dayjs from "dayjs";
 import { namedConsoleLog } from "src/lib/helper";
+import { useEffect } from "react";
 
 const baseLabel = [
     'metal',
@@ -37,13 +38,24 @@ const structuresImageSrc = [
 let dataStructures: Structure[] = new Array(structuresLabel.length)
 
 export const useStructures = (account: string) => {
+
+    // refresh data on transactions updates
+    const { transactions } = useStarknetTransactionManager();
+    useEffect(() => {
+        console.log("Refresh Structures");
+        refreshStructuresLevels();
+        refreshStructuresUpgradeCost();
+        refreshBuildStatus();
+    }, [transactions]);
+
     const { contract: ogame } = useOgameContract();
 
     // get_structures_levels 
     const {
         data: dataStructuresLevels,
         loading: loadingStructuresLevels,
-        error: errorStructuresLevels } =
+        error: errorStructuresLevels,
+        refresh: refreshStructuresLevels } =
         useStarknetCall({
             contract: ogame,
             method: 'get_structures_levels',
@@ -51,7 +63,7 @@ export const useStructures = (account: string) => {
         });
 
     // get upgrade status
-    const { data, loading, error } = useStarknetCall({
+    const { data, loading, error, refresh: refreshBuildStatus } = useStarknetCall({
         contract: ogame,
         method: 'build_time_completion',
         args: account ? [account] : undefined,
@@ -63,7 +75,8 @@ export const useStructures = (account: string) => {
     const {
         data: dataStructuresUpgradeCost,
         loading: loadingStructuresUpgradeCost,
-        error: errorStructuresUpgradeCost } =
+        error: errorStructuresUpgradeCost,
+        refresh: refreshStructuresUpgradeCost } =
         useStarknetCall({
             contract: ogame,
             method: 'get_structures_upgrade_cost',
