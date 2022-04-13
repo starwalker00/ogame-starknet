@@ -23,11 +23,11 @@ const Structures: NextPageWithLayout = () => {
     const { contextAccount } = useAppContext();
     const hasContextAccount = Boolean(contextAccount);
     // structure data
-    const [dataStructures, isUpgradingAny] = useStructures(contextAccount);
+    const [dataStructures, isUpgradingAny, buildTime] = useStructures(contextAccount);
     // const hasDataStructures = dataStructures.length > 0;
 
     // build time data
-    const [buildTime] = useBuildTime(contextAccount);
+    // const [buildTime] = useBuildTime(contextAccount);
 
     namedConsoleLog('account', account);
     namedConsoleLog('contextAccount', contextAccount);
@@ -46,13 +46,13 @@ const Structures: NextPageWithLayout = () => {
                 (hasContextAccount) &&
                 <>
                     <Heading px={12}>Structures</Heading>
-                    <Box margin={10}>
+                    {/* <Box margin={10}>
                         <BuildStatus buildTime={buildTime} />
-                    </Box>
+                    </Box> */}
                     <Stack direction='column' spacing={8}>
                         {
                             dataStructures.map((structure: Structure) =>
-                                <StructureItem key={structure.name} structure={structure} />
+                                <StructureItem key={structure.name} structure={structure} buildTime={buildTime} isUpgradingAny={isUpgradingAny} />
                             )
                         }
                     </Stack>

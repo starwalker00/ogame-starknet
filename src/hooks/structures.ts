@@ -1,7 +1,10 @@
 import { useStarknetCall } from "@starknet-react/core";
 import { useOgameContract } from "src/hooks/ogame";
 import { toBN } from "starknet/dist/utils/number";
+import { BigNumberish } from "starknet/dist/utils/number";
 import { Structure } from "src/custom-types/ogame";
+import dayjs from "dayjs";
+import { namedConsoleLog } from "src/lib/helper";
 
 const baseLabel = [
     'metal',
@@ -48,15 +51,15 @@ export const useStructures = (account: string) => {
         });
 
     // get upgrade status
-    // const {
-    //     data: dataIsUpgrading,
-    //     loading: loadingIsUpgrading,
-    //     error: errorIsUpgrading } =
-    //     useStarknetCall({
-    //         contract: ogame,
-    //         method: '',
-    //         args: account ? [account] : undefined,
-    //     });
+    const { data, loading, error } = useStarknetCall({
+        contract: ogame,
+        method: 'build_time_completion',
+        args: account ? [account] : undefined,
+    })
+    let buildingID: BigNumberish = data?.[0] ? toBN(data?.[0]) : undefined;
+    let buildTime = data?.[1] ? dayjs.unix(toBN(data?.[1]).toString(10)) : undefined;
+    console.log("build_time_completion")
+    namedConsoleLog("data", data);
 
     // get_structures_upgrade_cost
     const {
@@ -76,7 +79,7 @@ export const useStructures = (account: string) => {
             description: structuresDescription[i],
             imageSrc: structuresImageSrc[i].concat("?text=").concat(structuresLabel[i]),
             level: dataStructuresLevels?.[i] ? toBN(dataStructuresLevels?.[i]) : undefined,
-            isUpgrading: true,//TODO: get real value from view function
+            isUpgrading: buildingID?.toNumber() === i + 1,
             upgrade_costs: {
                 metal: dataStructuresUpgradeCost?.[i] ? toBN(dataStructuresUpgradeCost?.[i]?.metal) : undefined,
                 crystal: dataStructuresUpgradeCost?.[i] ? toBN(dataStructuresUpgradeCost?.[i]?.crystal) : undefined,
@@ -98,5 +101,5 @@ export const useStructures = (account: string) => {
     // console.log("isUpgradingAny");
     // console.log(isUpgradingAny);
 
-    return [dataStructures, isUpgradingAny] as const;
+    return [dataStructures, isUpgradingAny, buildTime] as const;
 };
